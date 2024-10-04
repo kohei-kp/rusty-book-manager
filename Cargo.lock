@@ -75,6 +75,10 @@ dependencies = [
 [[package]]
 name = "api"
 version = "0.1.0"
+dependencies = [
+ "axum",
+ "registry",
+]
 
 [[package]]
 name = "async-trait"
