@@ -7,3 +7,6 @@ edition = "2021"
 shared.workspace = true
 anyhow.workspace = true
 sqlx.workspace = true
+kernel.workspace = true
+async-trait.workspace = true
+derive-new.workspace = true
