@@ -1,5 +1,6 @@
 use shared::config::DatabaseConfig;
 use sqlx::{postgres::PgConnectOptions, PgPool};
+pub mod model;
 
 // DatabaseConfigからPgConnectionOptionsに変換する
 fn make_pg_connect_options(cfg: &DatabaseConfig) -> PgConnectOptions {
@@ -16,6 +17,10 @@ fn make_pg_connect_options(cfg: &DatabaseConfig) -> PgConnectOptions {
 pub struct ConnectionPool(PgPool);
 
 impl ConnectionPool {
+    pub fn new(pool: PgPool) -> Self {
+        Self(pool)
+    }
+
     // PgPoolへの参照を返す
     pub fn inner_ref(&self) -> &PgPool {
         &self.0
