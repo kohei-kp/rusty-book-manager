@@ -8,11 +8,11 @@ publish.workspace = true
 [dependencies]
 kernel.workspace = true
 shared.workspace = true
-registry.workspace =true
+registry.workspace = true
 axum.workspace = true
 derive-new.workspace = true
 serde.workspace = true
-utopia.workspace = true
+utoipa.workspace = true
 chrono.workspace = true
 tokio.workspace = true
 tracing.workspace = true
