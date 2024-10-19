@@ -10,7 +10,6 @@ pub struct BookRow {
 
 impl From<BookRow> for Book {
     fn from(value: BookRow) -> Self {
-        // パターンマッチを用いてBookRowからBookに変換する
         let BookRow {
             book_id,
             title,

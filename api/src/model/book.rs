@@ -1,5 +1,7 @@
-use kernel::model::book::{event::CreateBook, Book};
-use kernel::model::id::BookId;
+use kernel::model::{
+    book::{event::CreateBook, Book},
+    id::BookId,
+};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize)]
@@ -19,7 +21,7 @@ impl From<CreateBookRequest> for CreateBook {
             isbn,
             description,
         } = value;
-        Self {
+        CreateBook {
             title,
             author,
             isbn,

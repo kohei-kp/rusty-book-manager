@@ -18,7 +18,6 @@ pub async fn register_book(
         .create(req.into())
         .await
         .map(|_| StatusCode::CREATED)
-        .map_err(AppError::from)
 }
 
 pub async fn show_book_list(
@@ -28,14 +27,8 @@ pub async fn show_book_list(
         .book_repository()
         .find_all()
         .await
-        .map(|books| {
-            books
-                .into_iter()
-                .map(BookResponse::from)
-                .collect::<Vec<_>>()
-        })
+        .map(|v| v.into_iter().map(BookResponse::from).collect::<Vec<_>>())
         .map(Json)
-        .map_err(AppError::from)
 }
 
 pub async fn show_book(
@@ -50,5 +43,4 @@ pub async fn show_book(
             Some(bc) => Ok(Json(bc.into())),
             None => Err(AppError::EntityNotFound("not found".into())),
         })
-        .map_err(AppError::from)
 }

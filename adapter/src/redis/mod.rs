@@ -1,9 +1,8 @@
 pub mod model;
 
+use self::model::{RedisKey, RedisValue};
 use redis::{AsyncCommands, Client};
 use shared::{config::RedisConfig, error::AppResult};
-
-use self::model::{RedisKey, RedisValue};
 
 pub struct RedisClient {
     client: Client,
@@ -11,7 +10,7 @@ pub struct RedisClient {
 
 impl RedisClient {
     pub fn new(config: &RedisConfig) -> AppResult<Self> {
-        let client = Client::open(format!("redis:://{}:{}", config.host, config.port))?;
+        let client = Client::open(format!("redis://{}:{}", config.host, config.port))?;
         Ok(Self { client })
     }
 
