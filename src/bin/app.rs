@@ -6,7 +6,7 @@ use adapter::redis::RedisClient;
 use anyhow::Result;
 use api::route::{auth, v1};
 use axum::Router;
-use registry::AppRegistry;
+use registry::AppRegistryImpl;
 use shared::config::AppConfig;
 use tokio::net::TcpListener;
 
@@ -52,7 +52,7 @@ async fn bootstrap() -> Result<()> {
     let pool = connect_database_with(&app_config.database);
     let kv = Arc::new(RedisClient::new(&app_config.redis)?);
 
-    let registry = AppRegistry::new(pool, kv, app_config);
+    let registry = Arc::new(AppRegistryImpl::new(pool, kv, app_config));
 
     let app = Router::new()
         .merge(v1::routes())
